@@ -1,0 +1,19 @@
+### TODO nodePort를 입력받아야함
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: {{ .Release.Name }}-svc
+  name: {{ .Release.Name }}-svc
+spec:
+  ports:
+  - name: {{ .Release.Name }}-svc
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+    nodePort: 31000
+  selector:
+    app: {{ .Release.Name }}
+  type: {{ .Values.service.type }}
+status:
+  loadBalancer: {}
